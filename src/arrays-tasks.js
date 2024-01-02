@@ -20,8 +20,11 @@
  *    getIntervalArray(0, 100) => [ 0, 1, 2, ..., 100 ]
  *    getIntervalArray(3, 3) => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+function getIntervalArray(start, end) {
+  return Array.from(
+    { length: end - start + 1 },
+    (value, index) => start + index
+  );
 }
 
 /**
@@ -474,8 +477,16 @@ function findCommonElements(/* arr1, arr2 */) {
  *    findLongestIncreasingSubsequence([3, 10, 2, 1, 20]) => 2
  *    findLongestIncreasingSubsequence([50, 3, 10, 7, 40, 80]) => 3
  */
-function findLongestIncreasingSubsequence(/* nums */) {
-  throw new Error('Not implemented');
+function findLongestIncreasingSubsequence(nums) {
+  let result = 0;
+  nums.reduce((acc, v, i, arr) => {
+    if (arr[i + 1] > v) {
+      return acc + 1;
+    }
+    result = Math.max(result, acc);
+    return acc - (acc - 1);
+  }, 1);
+  return result;
 }
 
 /**
